@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block contents %}
+<script>
+
+    function checkForm() {
+        if($.trim($("#emeil").val()) == "") {
+            alert("이메일을 입력하세요");
+            $("#emeil").focus();
+            return false;
+        }
+
+        if(!emeilpa($.trim($("#emeil").val()))) {
+            alert("이메일을 형식이 올바르지 않습니다.");
+            $("#emeil").focus();
+            return false;
+        }
+        if($.trim($("#password").val()) == "") {
+            alert("비밀번호를 입력하세요");
+            $("#password").focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+<form name="form" action="{{url_for('member.member_login')}}" method="POST" onsubmit="return checkForm()">
+    {% if next_url %}
+    <input type="hidden" name="next_url" value="{{next_url}}"
+    {% endif %}
+
+    <div class="form-group">
+        <label for="emeil">이메일</label>
+        <input class="form-control" type="text" name="emeil" id="emeil"></input> 
+    </div>
+    <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input class="form-control" type="password" name="pass1" id="password"></input> 
+    </div>
+    <div class="text-center"><input type="submit" class="btn-success" value="로그인"></div>
+</form>
+
+{% endblock %}
+

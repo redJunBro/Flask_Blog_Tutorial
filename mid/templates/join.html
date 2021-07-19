@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+
+{% block contents %}
+<script>
+     function checkForm() {
+         console.log('동작');
+        if($.trim($("#name").val()) == "") {
+            alert("이름을 입력하세요");
+            $("#name").focus();
+            return false;
+        }
+        if($.trim($("#emeil").val()) == "") {
+            alert("이메일을 입력하세요");
+            $("#emeil").focus();
+            return false;
+        }
+        if(!emeilpa($.trim($("#emeil").val()))) {
+            alert("이메일을 형식이 올바르지 않습니다.");
+            $("#emeil").focus();
+            return false;
+        }
+        if($.trim($("#pass12").val()) == "") {
+            alert("비밀번호를 입력하세요");
+            $("#pass1").focus();
+            return false;
+        }
+        if($.trim($("#pass2").val()) == "") {
+            alert("비밀번호확인을 입력해주세요.");
+            $("#pass2").focus();
+            return false;
+        }
+        if($.trim($("#pass12").val()) != $.trim($("#pass2").val())) {
+            alert("비밀번호가 일치하지 않습니다..");
+            $("#pass2").select().focus();
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form name="form" action="{{url_for('member.member_join')}}" method="POST" onsubmit="checkForm()">
+    <div class="from-group">
+        <label for="name">이름</label>
+        <input class="form-control" type="text" name="name" id="name">
+    </div>
+    <div class="from-group">
+        <label for="name">아이디</label>
+        <input class="form-control" type="text" name="emeil" id="emeil">
+    </div>
+    <div class="from-group">
+        <label for="name">비밀번호</label>
+        <input class="form-control" type="password" name="pass1" id="pass12">
+    </div> <div class="from-group">
+        <label for="name">비밀번호 확인</label>
+        <input class="form-control" type="password" name="pass2" id="pass2">
+    </div>
+    <div class="text-center"><input class="btn btn-success" type="submit" value="가입하기"></div>
+</form>
+{% endblock %}
