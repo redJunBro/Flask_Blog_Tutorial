@@ -1,4 +1,4 @@
-from mid import app, datetime, time
+from main import app, datetime, time
 
 @app.template_filter("formatdatetime")
 def format_datetime(value):

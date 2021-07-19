@@ -1,4 +1,4 @@
-from mid import *
+from main import *
 from flask import Blueprint
 
 blueprint = Blueprint ("board", __name__, url_prefix="/board")

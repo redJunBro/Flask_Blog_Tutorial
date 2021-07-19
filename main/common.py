@@ -1,5 +1,5 @@
-from mid import wraps
-from mid import session, redirect, request, url_for
+from main import wraps
+from main import session, redirect, request, url_for
 
 def login_re(f):
     @wraps(f)
